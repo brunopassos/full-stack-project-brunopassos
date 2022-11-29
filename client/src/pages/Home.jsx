@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { HomeContainer } from "./styles";
-import FormClientContact from "../components/FormClientContact";
+import ClientList from "../components/ClientList";
 
 class Home extends Component {
   render() {
     return (
       <HomeContainer>
-        <FormClientContact />
+        <ClientList />
       </HomeContainer>
     );
   }
