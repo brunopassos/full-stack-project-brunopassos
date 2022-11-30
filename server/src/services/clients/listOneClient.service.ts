@@ -8,7 +8,7 @@ const listOneClientService = async (id: string): Promise<Clients> => {
     const client = await clientsRepository.findOneBy({id:id});
 
     if(!client){
-        throw new AppError(404, "User not found");
+        throw new AppError(404, "Client not found");
     }
 
     return client;

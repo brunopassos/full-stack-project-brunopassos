@@ -4,7 +4,6 @@ import createClientService from "../../services/clients/createClient.service";
 
 const createClientController = async (req: Request, res: Response) => {
   try {
-    console.log(req.body)
     const {name, email, phone} = req.body;
     const client = await createClientService({name, email, phone});
     return res.status(201).json({data:{ message: "Client created", client}});
