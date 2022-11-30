@@ -80,6 +80,15 @@ const ClientList = () => {
     console.log("Deleted");
   };
 
+  const {
+    modalIsOpen,
+    setIsOpen,
+    openModal,
+    closeModal,
+    afterOpenModal,
+    subtitle,
+  } = useContext(ClientContext);
+
   return (
     <Container>
       <StyledHeader>
