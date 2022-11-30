@@ -6,9 +6,13 @@ import {
   StyledOptionsSection,
   StyledOptionsButton,
 } from "./styles";
+import { useContext } from "react";
+import { ClientContext } from "../../context";
 
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
+import ClientModal from "../ClientModal";
+
 
 const dbTest = [
   {
@@ -76,6 +80,15 @@ const ClientList = () => {
     console.log("Deleted");
   };
 
+  const {
+    modalIsOpen,
+    setIsOpen,
+    openModal,
+    closeModal,
+    afterOpenModal,
+    subtitle,
+  } = useContext(ClientContext);
+
   return (
     <Container>
       <StyledHeader>
@@ -88,6 +101,9 @@ const ClientList = () => {
               <p className="name">Nome: {client.name}</p>
               <p className="secondaryData">Email: {client.email}</p>
               <p className="secondaryData">Telefone: {client.phone}</p>
+              <StyledOptionsButton onClick={() => openModal()}>
+                Detalhes
+              </StyledOptionsButton>
             </StyledDataSection>
             <StyledOptionsSection>
               <StyledOptionsButton onClick={() => onEdit()}>
