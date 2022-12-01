@@ -8,7 +8,7 @@ const listOneContactService = async (id: string): Promise<Contacts> => {
     const contact = await contactsRepository.findOneBy({id:id});
 
     if(!contact){
-        throw new AppError(404, "Contact noew Found");
+        throw new AppError(404, "Contact not Found");
     }
 
     return contact;
