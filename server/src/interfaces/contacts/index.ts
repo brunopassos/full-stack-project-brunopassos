@@ -8,4 +8,5 @@ export interface IContact {
 export interface IContactRequest {
   email: string;
   phone: string;
+  clientId: string;
 }
