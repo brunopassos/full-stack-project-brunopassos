@@ -4,8 +4,8 @@ import createContactService from "../../services/contacts/createContact.service"
 
 const createContactController = async (req: Request, res: Response) => {
   try {
-    const { email, phone } = req.body;
-    const contact = await createContactService({ email, phone } );
+    const { email, phone, clientId } = req.body;
+    const contact = await createContactService({ email, phone, clientId });
     return res.status(201).json({data: {message: "Contact created", contact}})
   } catch (error) {
     if (error instanceof AppError) {
