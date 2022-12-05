@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+🏆 Entrega - Desafio: vaga Fullstack - JUNIOR
+Introdução
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Neste desafio, vamos relembrar conceitos que aprendemos ao longo do curso, desde conhecimento de front-end e back-end. Além de prepara-los para desafios reais das empresas.
+Sobre o desafio
 
-## Available Scripts
+Por favor leia este documento do começo ao fim, com muita atenção. O intuito deste teste é avaliar seus conhecimentos técnicos como fullstack junior, e assim entendermos melhor o quanto você possui de conhecimento e o quanto nós podemos te ajudar a crescer e se desenvolver.
 
-In the project directory, you can run:
+Este teste consiste em criar um pequeno cadastro de clientes com vínculo de contatos, depois mostrar o cliente e seus contatos vinculados.
+Instruções de entrega do desafio
 
-### `npm start`
+    Primeiro, crie um repositório público no Github;
+    Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local;
+    Faça o push do seu projeto local para um repositório público no Github;
+    Por fim, envie no canvas os links dos seus repositórios.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Descrição do projeto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Você deverá criar um cadastro de clientes que poderá conter muitos contatos associados. Depois deste processo deverá ter um relatório em tela, ou PDF que mostre os clientes e os contatos vinculados a este cliente.
 
-### `npm test`
+Obs: nesse desafio utilize Javascript e Typescript
+Sua aplicação web DEVE CONTER:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Uma tela de cadastro de cliente com os seguintes campos:
+        nome completo
+        e-mails
+        telefones
+        data de registro (data em que o cliente foi registrado)
+    Ter uma tela para cadastro de contato com os seguintes campos:
+        nome completo
+        e-mails
+        telefones
+    Tanto a tela de cliente quanto a de contato devem ter as operações básicas de um CRUD;
+    Um cliente poderá ter mais de um contato vinculado a ele;
+    Um relatório (podendo ser em tela ou exportado em pdf) que mostre o cliente e seus contatos.
 
-### `npm run build`
+Necessário:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Ter uma documentação clara do projeto;
+    Apresentar telas bonitas, porém, preferimos o processo funcional e fluido;
+    Cobertura de testes;
+    Autenticação e autorização;
+    Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix(Linux ou Mac OS X).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Diferenciais:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Estar dockerizado.
 
-### `npm run eject`
+Avaliação
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Seu projeto será avaliado de acordo com os seguintes critérios:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Sua aplicação preenche os requerimentos básicos?
+    Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
+    Você seguiu as instruções de envio do desafio?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas (padrões) (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+Boa sorte!
