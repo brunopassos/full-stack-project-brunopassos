@@ -18,6 +18,13 @@ export const StyledHeader = styled.header`
   justify-content: center;
   border-bottom: 1px solid #7f8386;
 
+  .menuIcon{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
   h2 {
     color: #5f75b1;
     font-size: 22px;

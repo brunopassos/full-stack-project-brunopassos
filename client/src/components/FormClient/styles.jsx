@@ -17,6 +17,14 @@ export const StyledForm = styled.form`
   }
 `;
 
+export const StyledMenu = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    padding: 15px;
+`
+
 export const StyledInput = styled.input`
   width: 303px;
   height: 60px;
