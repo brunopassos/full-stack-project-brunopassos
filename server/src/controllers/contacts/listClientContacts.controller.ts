@@ -6,7 +6,7 @@ const listClientContactsController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const contacts = await listClientContactsService(id);
-    return res.status(200).json({data:{ message: "Client contacts", contacts}});
+    return res.status(200).send(contacts);
   } catch (error) {
     if (error instanceof AppError) {
       handleError(error, res);

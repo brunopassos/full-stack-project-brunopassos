@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn, OneToMany  } from "typeorm";
+import { Column, Entity, PrimaryColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Contacts } from "./contacts.entity";
 
@@ -16,11 +16,13 @@ export class Clients {
   @Column({ length: 20 })
   phone: string;
 
-  @Column({type: "date"})
-  createdAt: Date
+  @Column({ type: "date" })
+  createdAt: Date;
 
-  @OneToMany(() => Contacts, contact => contact.client)
-  contact: Clients[]
+  @OneToMany(() => Contacts, (contact) => contact.client, {
+    cascade: true,
+  })
+  contact: Clients[];
 
   constructor() {
     if (!this.id) {

@@ -13,10 +13,11 @@ export class Contacts {
   @Column({ length: 20 })
   phone: string;
 
-  @ManyToOne(() => Clients, {eager: true})
+  @ManyToOne(() => Clients, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn()
-  client: Clients
-
+  client: Clients;
 
   constructor() {
     if (!this.id) {
