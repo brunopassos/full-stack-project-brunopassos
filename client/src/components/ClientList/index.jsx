@@ -7,7 +7,8 @@ import {
   StyledOptionsButton,
   StyledButton,
   StyledForm,
-  StyledInput
+  StyledInput,
+  StyledClientContactsSection
 } from "./styles";
 import { useContext, useState } from "react";
 import { ClientContext } from "../../context";
@@ -39,13 +40,22 @@ const ClientList = () => {
     setClientId,
     clientToEdit,
     setClientToEdit,
-    handlePatchEditClient
+    handlePatchEditClient,
+    handleGetClientContactsList,
+    clientContactsList,
+    handleDeleteClientContact,
+    clientId
   } = useContext(ClientContext);
   const history = useHistory();
 
   const handleOpenModal = (client) => {
     setIsOpen(!modalIsOpen);
-    setClientToEdit(client);    
+    setClientToEdit(client);
+  };
+
+  const handleOpenContactsModal = (clientId) => {
+    handleGetClientContactsList(clientId);
+    setContactsIsOpen(!modalContactsIsOpen);
   };
 
   const handleOnClienteDelete = (clientId) => {
@@ -57,21 +67,37 @@ const ClientList = () => {
     history.push("/formClientContact");
   };
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalContactsIsOpen, setContactsIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function closeContactsModal() {
+    setContactsIsOpen(false);
+    setClientId([]);
   }
 
   const handleEditClient = (data) => {
     handlePatchEditClient(data, clientToEdit.id);
     reset();
     setIsOpen(!modalIsOpen);
+  };
+
+  const handleOnDeleteClientContact = (contactId) => {
+    handleDeleteClientContact(contactId, clientId)
   }
 
   const schema = yup.object({
     name: yup.string().required("Nome não pode ser vazio"),
-    email: yup.string().required("Email não pode ser vazio").email("Digite um email válido"),
-    phone: yup.string().required("Telefone não pode ser vazio").min(10, "O telefone deve ter no mínimo 10 digitos.")
+    email: yup
+      .string()
+      .required("Email não pode ser vazio")
+      .email("Digite um email válido"),
+    phone: yup
+      .string()
+      .required("Telefone não pode ser vazio")
+      .min(10, "O telefone deve ter no mínimo 10 digitos."),
   });
 
   const {
@@ -82,7 +108,6 @@ const ClientList = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
 
   return (
     <Container>
@@ -96,7 +121,9 @@ const ClientList = () => {
               <p className="name">Nome: {client.name}</p>
               <p className="secondaryData">Email: {client.email}</p>
               <p className="secondaryData">Telefone: {client.phone}</p>
-              <StyledOptionsButton onClick={() => handleOpenModal(client.id)}>
+              <StyledOptionsButton
+                onClick={() => handleOpenContactsModal(client.id)}
+              >
                 Detalhes
               </StyledOptionsButton>
               <StyledOptionsButton
@@ -129,28 +156,52 @@ const ClientList = () => {
         <StyledForm onSubmit={handleSubmit(handleEditClient)}>
           <h2>Editar Cliente</h2>
           <StyledInput
-            // helperText={errors.name?.message}
-            // error={errors.name?.message}
             placeholder="Nome Completo"
             {...register("name")}
             defaultValue={clientToEdit.name}
           />
           <StyledInput
-            // helperText={errors.email?.message}
-            // error={errors.email?.message}
             placeholder="Email"
             {...register("email")}
             defaultValue={clientToEdit.email}
           />
           <StyledInput
-            // helperText={errors.phone?.message}
-            // error={errors.phone?.message}
             placeholder="Telefone com DDD"
             {...register("phone")}
             defaultValue={clientToEdit.phone}
           />
           <StyledButton>Editar Cliente</StyledButton>
         </StyledForm>
+      </ReactModal>
+
+      <ReactModal
+        isOpen={modalContactsIsOpen}
+        onRequestClose={closeContactsModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+        ariaHideApp={false}
+      >
+        <button onClick={closeContactsModal}>x</button>
+        <StyledClientContactsSection>
+          {clientContactsList.map((contact) => {
+            return (
+              <StyledClientSection key={contact.id}>
+                <StyledDataSection>
+                  <p className="secondaryData">Email: {contact.email}</p>
+                  <p className="secondaryData">Telefone: {contact.phone}</p>
+                </StyledDataSection>
+                <StyledOptionsSection>
+                  <StyledOptionsButton onClick={() => console.log("editar")}>
+                    <AiFillEdit />
+                  </StyledOptionsButton>
+                  <StyledOptionsButton onClick={() => handleOnDeleteClientContact(contact.id)}>
+                    <BsFillTrashFill />
+                  </StyledOptionsButton>
+                </StyledOptionsSection>
+              </StyledClientSection>
+            );
+          })}
+        </StyledClientContactsSection>
       </ReactModal>
     </Container>
   );

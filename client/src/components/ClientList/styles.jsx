@@ -5,7 +5,7 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 386px;
+  width: 100%;
   overflow-y: visible;
   height: 100%;
 `;
@@ -30,8 +30,9 @@ export const StyledClientSection = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border-bottom: 1px solid #7f8386;
+  padding-right: 30px;
 
 `;
 
@@ -111,3 +112,11 @@ export const StyledButton = styled.button`
   color: #FFFFFF;
   border: none;
 `;
+
+export const StyledClientContactsSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 375px;
+  height: 450px;
+  overflow-y: auto;
+`

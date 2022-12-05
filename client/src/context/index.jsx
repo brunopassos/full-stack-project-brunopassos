@@ -7,6 +7,7 @@ function ClientProvider({ children }) {
   const [clientList, setClientList] = useState([]);
   const [clientToEdit, setClientToEdit] = useState({});
   const [clientId, setClientId] = useState("");
+  const [clientContactsList, setClientContactsList] = useState([]);
 
   function handleGetClientsList() {
     Api.get("/clients")
@@ -38,6 +39,18 @@ function ClientProvider({ children }) {
       .catch((err) => console.log(err));
   }
 
+  function handleGetClientContactsList(id) {
+    Api.get(`/contacts/client/${id}`)
+      .then((res) => setClientContactsList(res.data))
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteClientContact(id, clientId) {
+    Api.delete(`/contacts/${id}`)
+      .then((_) => handleGetClientContactsList(clientId))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <ClientContext.Provider
       value={{
@@ -51,7 +64,10 @@ function ClientProvider({ children }) {
         handlePostCreateNewClientContact,
         clientToEdit,
         setClientToEdit,
-        handlePatchEditClient
+        handlePatchEditClient,
+        handleGetClientContactsList,
+        clientContactsList,
+        handleDeleteClientContact,
       }}
     >
       {children}
