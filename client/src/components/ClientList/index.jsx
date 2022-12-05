@@ -8,19 +8,30 @@ import {
   StyledButton,
   StyledForm,
   StyledInput,
-  StyledClientContactsSection
+  StyledClientContactsSection,
 } from "./styles";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { ClientContext } from "../../context";
 
 import { BsFillTrashFill } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiOutlineMenu } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import ReactModal from "react-modal";
 
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import {
+  Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 
 const customStyles = {
   content: {
@@ -34,6 +45,13 @@ const customStyles = {
 };
 
 const ClientList = () => {
+
+  useEffect(()=>{
+    handleGetClientsList();
+  },[])
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
   const {
     clientList,
     handleDeleteClient,
@@ -44,7 +62,8 @@ const ClientList = () => {
     handleGetClientContactsList,
     clientContactsList,
     handleDeleteClientContact,
-    clientId
+    clientId,
+    handleGetClientsList
   } = useContext(ClientContext);
   const history = useHistory();
 
@@ -85,8 +104,8 @@ const ClientList = () => {
   };
 
   const handleOnDeleteClientContact = (contactId) => {
-    handleDeleteClientContact(contactId, clientId)
-  }
+    handleDeleteClientContact(contactId, clientId);
+  };
 
   const schema = yup.object({
     name: yup.string().required("Nome não pode ser vazio"),
@@ -113,6 +132,14 @@ const ClientList = () => {
     <Container>
       <StyledHeader>
         <h2>Clientes</h2>
+        <div className="menuIcon">
+          <AiOutlineMenu
+            fontSize={40}
+            ref={btnRef}
+            colorScheme="teal"
+            onClick={onOpen}
+          />
+        </div>
       </StyledHeader>
       {clientList.map((client) => {
         return (
@@ -194,7 +221,9 @@ const ClientList = () => {
                   <StyledOptionsButton onClick={() => console.log("editar")}>
                     <AiFillEdit />
                   </StyledOptionsButton>
-                  <StyledOptionsButton onClick={() => handleOnDeleteClientContact(contact.id)}>
+                  <StyledOptionsButton
+                    onClick={() => handleOnDeleteClientContact(contact.id)}
+                  >
                     <BsFillTrashFill />
                   </StyledOptionsButton>
                 </StyledOptionsSection>
@@ -203,6 +232,26 @@ const ClientList = () => {
           })}
         </StyledClientContactsSection>
       </ReactModal>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+
+          <DrawerBody>
+            <Box>
+              <Button onClick={() => history.push("/")}>Home</Button>
+            </Box>
+            <Box>
+              <Button onClick={() => history.push("/formClient")}>Adicionar cliente</Button>
+            </Box>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Container>
   );
 };
