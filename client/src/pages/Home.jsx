@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import HomeMenu from "../components/HomeMenuComponent";
 import { HomeContainer } from "./styles";
-import ClientList from "../components/ClientList";
 
 class Home extends Component {
   render() {
     return (
       <HomeContainer>
-        <ClientList />
+        <HomeMenu/>
       </HomeContainer>
     );
   }

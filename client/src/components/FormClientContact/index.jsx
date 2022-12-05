@@ -6,35 +6,16 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillContacts } from "react-icons/ai";
+import { useContext } from "react";
+import { ClientContext } from "../../context";
 
-const dbTest = [
-    {
-        name:"Selecione um Cliente",
-        id: 0
-    },
-    {
-        name: "teste1",
-        id: 1
-    },
-    {
-        name: "teste2",
-        id: 2
-    },
-    {
-        name: "teste3",
-        id: 3
-    },
-    {
-        name: "teste4",
-        id: 4
-    },
-]
 
 const FormClientContact = () => {
+  const {clientId, handlePostCreateNewClientContact} = useContext(ClientContext);
+
   const schema = yup.object({
     email: yup.string().required("Email não pode ser vazio").email("Digite um email válido"),
     phone: yup.string().required("Telefone não pode ser vazio").min(10, "O telefone deve ter no mínimo 10 digitos."),
-    client: yup.string().required("Selecione uma opção")
   });
 
   const {
@@ -47,30 +28,17 @@ const FormClientContact = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    data.clientId = clientId;
+    handlePostCreateNewClientContact(data);
   };
 
-  const verifyClientSelected = (data) => {
-    if(data.client === "Selecione um Cliente"){
-        console.log("Favor selecionar um cliente.")
-    }else{
-        onSubmit(data)
-    }
-  }
-
   return (
-    <StyledForm onSubmit={handleSubmit(verifyClientSelected)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <AiFillContacts fontSize={60} color="#5F75B1"/>
       <h2>Cadastrar contato</h2>
       <StyledInput helperText={errors.email?.message} error={errors.email?.message} placeholder="Email" {...register("email")}/>
       <StyledInput helperText={errors.phone?.message} error={errors.phone?.message} placeholder="Telefone com DDD" {...register("phone")}/>
-      <StyledSelect {...register("client")}>
-        {dbTest.map((client) => {
-            return <option value={client.name} key={client.id}>{client.name}</option>
-        })}
-      </StyledSelect>
-      <StyledButton>Cadastrar Cliente</StyledButton>
+      <StyledButton>Cadastrar novo contato</StyledButton>
     </StyledForm>
   );
 };

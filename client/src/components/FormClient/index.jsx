@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { StyledForm, StyledInput, StyledButton } from "./styles";
 
@@ -6,8 +6,13 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillContacts } from "react-icons/ai";
+import { ClientContext } from "../../context";
+
 
 const FormClient = () => {
+
+  const {handlePostAddNewClient} = useContext(ClientContext)
+
   const schema = yup.object({
     name: yup.string().required("Nome não pode ser vazio"),
     email: yup.string().required("Email não pode ser vazio").email("Digite um email válido"),
@@ -24,7 +29,7 @@ const FormClient = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    handlePostAddNewClient(data);
     reset();
   };
 
