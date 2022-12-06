@@ -1,58 +1,27 @@
-🏆 Entrega - Desafio: vaga Fullstack - JUNIOR
-Introdução
+<h1>App Schedule</h1> 
 
-Neste desafio, vamos relembrar conceitos que aprendemos ao longo do curso, desde conhecimento de front-end e back-end. Além de prepara-los para desafios reais das empresas.
-Sobre o desafio
+## Instalação 
 
-Por favor leia este documento do começo ao fim, com muita atenção. O intuito deste teste é avaliar seus conhecimentos técnicos como fullstack junior, e assim entendermos melhor o quanto você possui de conhecimento e o quanto nós podemos te ajudar a crescer e se desenvolver.
+O que acha de testar a nossa aplicação? Siga os passos abaixo:
 
-Este teste consiste em criar um pequeno cadastro de clientes com vínculo de contatos, depois mostrar o cliente e seus contatos vinculados.
-Instruções de entrega do desafio
++ Aplicação
 
-    Primeiro, crie um repositório público no Github;
-    Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local;
-    Faça o push do seu projeto local para um repositório público no Github;
-    Por fim, envie no canvas os links dos seus repositórios.
+    1) Faça o clone da branch ```main``` para o teu computador.
+    2) Abra a aplicação na sua IDE de preferência.
+    3) O projeto foi dividido em duas pastas: client e server.
+    4) Dentro da pasta serve você verá um arquivo chamado ```.env```. Adicione as informações que são solicitadas:
+        1) POSTGRES_USER="" (informe o usuário que você criou na instalação do postgress. Ex: POSTGRES_USER="user")
+        2) POSTGRES_PWD="" (informe a senha que você criou na instalação do postgress. Ex: POSTGRES_PWD="senhaForte")
+        3) POSTGRES_DB="" (informe o nome da database que foi criana no beekeeper. Ex: POSTGRES_DB="app-car-catalog")
+        4) JWT_SECRET="" (Digite uma sequência de caracteres. Ex: JWT_SECRET="stringSecretKey")
+    5) Via terminal, acesse a pasta "server": ```cd server/```
+    6) No terminal, rode o comando ```yarn``` para instalar todas as dependências.
+    7) Execute o comando ```yarn typeorm migration:generate src/migrations/createTables -d src/data-source.ts``` para gerar as migrações.
+    8) Execute o comando ```yarn typeorm migration:run -d src/data-source.ts``` para rodar as migrações.
+    9) Após a instalação, execute o comando ```yarn dev```
+    10) Abra um sergundo terminal, acesse a pasta "client": ```cd client/```
+    11) No terminal, rode o comando ```yarn``` para instalar todas as dependências.
+    12) Após a instalação, execute o comando ```expo start```
+    13) A aplicação será aberta no seu navegador e você já pode utilizar.
 
-Descrição do projeto
 
-Você deverá criar um cadastro de clientes que poderá conter muitos contatos associados. Depois deste processo deverá ter um relatório em tela, ou PDF que mostre os clientes e os contatos vinculados a este cliente.
-
-Obs: nesse desafio utilize Javascript e Typescript
-Sua aplicação web DEVE CONTER:
-
-    Uma tela de cadastro de cliente com os seguintes campos:
-        nome completo
-        e-mails
-        telefones
-        data de registro (data em que o cliente foi registrado)
-    Ter uma tela para cadastro de contato com os seguintes campos:
-        nome completo
-        e-mails
-        telefones
-    Tanto a tela de cliente quanto a de contato devem ter as operações básicas de um CRUD;
-    Um cliente poderá ter mais de um contato vinculado a ele;
-    Um relatório (podendo ser em tela ou exportado em pdf) que mostre o cliente e seus contatos.
-
-Necessário:
-
-    Ter uma documentação clara do projeto;
-    Apresentar telas bonitas, porém, preferimos o processo funcional e fluido;
-    Cobertura de testes;
-    Autenticação e autorização;
-    Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix(Linux ou Mac OS X).
-
-Diferenciais:
-
-    Estar dockerizado.
-
-Avaliação
-
-Seu projeto será avaliado de acordo com os seguintes critérios:
-
-    Sua aplicação preenche os requerimentos básicos?
-    Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-    Você seguiu as instruções de envio do desafio?
-
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas (padrões) (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
-Boa sorte!
